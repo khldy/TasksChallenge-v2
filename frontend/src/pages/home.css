@@ -1,0 +1,228 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1f1f1f;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.title h1 {
+    font-family: "Dela Gothic One", sans-serif;
+    color: aliceblue;
+    margin: 0;
+    font-size: 2em;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 15px;
+}
+
+
+.day-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 5%;
+    border: 1px solid #f2f2f2;
+    border-color: #f2f2f2;
+    background-color: #1f1f1f;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.day-button:hover {
+    background-color: #ecfff6;
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    background-color: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    color: #1f1f1f;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+footer {
+    font-family: "Fira Sans", sans-serif;
+    text-align: center;
+    margin-top: 35px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.multiple-of-five {
+    border-radius: 50%;
+    border: 1px solid #f2f2f2;
+    background-color: #a0ea4b;
+}
+
+.day-25, .day-50, .day-75{
+    border-radius: 50%;
+    background-color: #f2f2f2;
+}
+
+.day-25:hover, .day-50:hover, .day-75:hover{
+    background-color: #a0ea4b;
+    border-bottom-width: 5px;
+    border-radius: 10%;
+}
+
+.day-100 { 
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    display: block;
+}
+
+.day-100:hover{ 
+    background-color: #a0ea4b;
+    border-bottom-width: 5px;
+    border-radius: 10px;
+    display: block;
+}
+
+.clicked {
+    background-color: #a0ea4b;
+    color: #fff;
+}
+
+#theme-toggle:hover {
+    background-color: #a0ea4b;
+}
+
+.light-mode {
+    background-color: #f2f2f2;
+    color: #1f1f1f;
+}
+
+.light-mode .day-button {
+    background-color: #f2f2f2;
+    border-color: #1f1f1f;
+}
+
+.light-mode .day-button:hover {
+    background-color: #1f1f1f;
+}
+
+.light-mode #theme-toggle {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.light-mode #theme-toggle:hover{
+    background-color: #a0ea4b;
+    color: white;
+}
+
+.light-mode .title h1{
+    color: #1f1f1f;
+}
+
+.light-mode .multiple-of-five {
+    border-radius: 50%;
+    border: 1px solid #1f1f1f;
+    background-color: #a0ea4b;
+}
+
+.light-mode .day-25{
+    border-radius: 50%;
+    background-color: #1f1f1f;
+}
+
+.light-mode .day-25:hover{
+    background-color: #a0ea4b;
+    border-bottom-width: 5px;
+    border-radius: 10%;
+}
+
+.light-mode .day-50{
+    border-radius: 50%;
+    background-color: #1f1f1f;
+}
+
+.light-mode .day-50:hover{
+    background-color: #a0ea4b;
+    border-bottom-width: 5px;
+    border-radius: 10%;
+}
+
+.light-mode .day-75{
+    border-radius: 50%;
+    background-color: #1f1f1f;
+}
+
+.light-mode .day-75:hover{
+    background-color: #a0ea4b;
+    border-bottom-width: 5px;
+    border-radius: 10%;
+}
+
+.light-mode .day-100 { 
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    display: block;
+}
+
+.light-mode .day-100:hover{ 
+    background-color: #a0ea4b;
+    border-bottom-width: 5px;
+    border-radius: 10px;
+    display: block;
+}
+
+.light-mode .footer {
+    font-family: "Fira Sans", sans-serif;
+    text-align: center;
+    margin-top: 35px;
+    color: #1f1f1f;
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 600px) {
+    .title {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .title h1 {
+        font-size: 1.5em;
+    }
+
+    .container {
+        max-width: 95%;
+        grid-gap: 5px;
+    }
+
+    .day-button {
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+    }
+
+    footer {
+        margin-top: 30px;
+    }
+}
+
+.completed{
+    background-color: #a0ea4b;
+    color: black;
+}

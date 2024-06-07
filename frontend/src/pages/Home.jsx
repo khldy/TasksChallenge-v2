@@ -1,102 +1,43 @@
-import { useEffect, useState } from "react";
-import ToDo from "../components/ToDo";
-import { addToDo, getAllToDo, updateToDo, deleteToDo, completeToDo } from "../utils/HandleApi";
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './home.css'
+import { dayContext } from '../context';
+const Dashboard = () => {
+    const navigate = useNavigate()
+    const ctx = useContext(dayContext)
 
-function Home() {
-    const [toDo, setToDo] = useState([]);
-    const [text, setText] = useState("");
-    const [isUpdating, setIsUpdating] = useState(false);
-    const [toDoId, setToDoId] = useState("");
-
-    useEffect(() => {
-        getAllToDo().then(data => {
-            setToDo(data);
-        });
-    }, []);
-
-    const updateMode = (_id, text) => {
-        setIsUpdating(true);
-        setText(text);
-        setToDoId(_id);
-    };
-
-    const handleAddUpdate = () => {
-        if (text.trim() === "") {
-            alert("Task cannot be empty");
-            return;
+    const renderButtons = () => {
+        const buttons = [];
+        for (let i = 1; i <= 100; i++) {
+            let className = 'day-button';
+            if (i === 100) {
+                className += ' day-100';
+            } else if (i % 5 === 0) {
+                className += ' multiple-of-five';
+            } else if (i === 25 || i === 50 || i === 75) {
+                className += ` day-${i}`;
+            }
+            buttons.push(
+                <button key={i} className={`${className} ${ctx.completedDays.length > 0 && ctx.completedDays.includes(i.toString()) ? "completed":""}`} onClick={() => navigate("/challenge/" + i)}>
+                    {i}
+                </button>
+            );
         }
-        if (isUpdating) {
-            updateToDo(toDoId, text)
-                .then(data => {
-                    setToDo(data);
-                    setText("");
-                    setIsUpdating(false);
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        } else {
-            addToDo(text)
-                .then(data => {
-                    setToDo(data);
-                    setText("");
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        }
-    };
-
-    const handleComplete = (_id, completed) => {
-        completeToDo(_id, completed)
-            .then(data => {
-                setToDo(data);
-                console.log("a7a");
-            })
-            .catch(err => {
-                console.error(err);
-            });
+        return buttons;
     };
 
     return (
-        <div className="App">
+        <div className="dashboard">
+            <button id="theme-toggle"><i className="fa-solid fa-sun"></i></button>
+            <div className="title">
+                <h1>100 DAYS CHALLENGE</h1>
+            </div>
             <div className="container">
-                <h1>To-Do List</h1>
-                <div className="top">
-                    <input
-                        type="text"
-                        placeholder="Add tasks here.."
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                    />
-                    <div className="add" onClick={handleAddUpdate}>
-                        {isUpdating ? "Update" : "Add"}
-                    </div>
-                </div>
-                <div className="list">
-                    {toDo.map((item) => (
-                        <ToDo
-                            key={item._id}
-                            text={item.text}
-                            completed={item.completed}
-                            updateMode={() => updateMode(item._id, item.text)}
-                            deleteToDo={() => {
-                                deleteToDo(item._id)
-                                    .then(data => {
-                                        setToDo(data);
-                                    })
-                                    .catch(err => {
-                                        console.error(err);
-                                    });
-                            }}
-                            completeToDo={() => handleComplete(item._id, !item.completed)}
-                        />
-                    ))}
-                </div>
+                {renderButtons()}
             </div>
             <footer>All rights reserved to Youssef Khaled</footer>
         </div>
     );
-}
+};
 
-export default Home;
+export default Dashboard;

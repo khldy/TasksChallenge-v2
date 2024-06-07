@@ -1,16 +1,23 @@
 const ToDoModel = require('../models/ToDoModel')
 
 module.exports.getToDo = async (req, res) => {
-    const toDo = await ToDoModel.find()
-    res.send(toDo) 
+    const day = req.params.day
+    console.log(day)
+    const toDo = await ToDoModel.find({day:day})
+    if(!toDo){
+
+        res.send("Nothing to return ")
+    }
+    console.log(toDo)
+    res.status(200).json(toDo) 
 }
 
 module.exports.saveToDo = async (req, res) => {
-
+    const day = req.params.day
     const {text} = req.body 
-
+    console.log(day)
     ToDoModel
-        .create({text})
+        .create({day:day,text})
         .then((data) => {
             console.log("Added Successfully...");
             console.log(data);

@@ -1,0 +1,122 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.App{
+    background-color: white;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    justify-content: center;
+
+
+}
+
+.App .container{
+    width: 800px;
+    height: 800px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    /* height: fit-content; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: rgb(224, 224, 224);
+    padding: 20px;
+}
+
+.App .container h1{
+    font-size: 35px;
+}
+.App .container .top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.App .container .top input{
+    width: 500px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+
+
+.App .container .top .add{
+    color: white;
+    background-color: rgb(115, 236, 111);
+    padding: 16px;
+    /* width: 0px; */
+    text-align: center;
+    font-size: 18px;
+    margin-left: 5px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.App .container .top .add:hover{
+    background-color: rgb(96, 245, 91);
+    transform: scale(1.1) ; 
+}
+
+.list{
+    background-color: white;
+    width: 570px;
+    padding: 10px;
+    height: 790px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.todo{
+    background-color: rgb(115, 236, 111);;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all .4s;
+    border-radius: 5px;
+
+}
+
+
+.icon{
+    font-size: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.icon:hover{
+    transform: scale(1.5);
+}
+.emptyTasks{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 36px;
+    color: rgb(160, 158, 158);
+
+}
+
+.complete{
+    width: 500px;
+    text-align: center;
+}
+.complete button{
+    padding: 10px;
+    width: 200px;
+    background-color: rgb(115, 236, 111);
+    border: 1px solid springgreen;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.complete button:hover{
+    transform: scale(1.1);
+    background-color:springgreen ;
+}

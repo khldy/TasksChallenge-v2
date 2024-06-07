@@ -1,19 +1,19 @@
 import axios from 'axios';
 const baseUrl = "http://localhost:5000";
 
-const getAllToDo = () => {
-    return axios.get(baseUrl)
+const getAllToDoForADay = (day) => {
+    return axios.get(baseUrl+"/challenge/"+day)
         .then(({ data }) => {
             console.log('data ----> ', data);
             return data;
         });
 };
 
-const addToDo = (text) => {
-    return axios.post(`${baseUrl}/save`, { text })
+const addToDo = (text,day) => {
+    return axios.post(`${baseUrl}/save/${day}`, { text,day })
         .then(({ data }) => {
             console.log(data);
-            return getAllToDo();
+            return getAllToDoForADay(day);
         })
         .catch((err) => {
             console.log(err);
@@ -21,10 +21,10 @@ const addToDo = (text) => {
         });
 };
 
-const updateToDo = (toDoId, text) => {
+const updateToDo = (toDoId, text,day) => {
     return axios.post(`${baseUrl}/update`, { _id: toDoId, text })
         .then(({ data }) => {
-            return getAllToDo();
+            return getAllToDoForADay(day);
         })
         .catch((err) => {
             console.log(err);
@@ -32,11 +32,11 @@ const updateToDo = (toDoId, text) => {
         });
 };
 
-const deleteToDo = (_id) => {
+const deleteToDo = (_id,day) => {
     return axios.post(`${baseUrl}/delete`, { _id })
         .then(({ data }) => {
             console.log(data);
-            return getAllToDo();
+            return getAllToDoForADay(day);
         })
         .catch((err) => {
             console.log(err);
@@ -44,11 +44,11 @@ const deleteToDo = (_id) => {
         });
 };
 
-const completeToDo = (_id, completed) => {
+const completeToDo = (_id, completed,day) => {
     return axios.post(`${baseUrl}/complete`, { _id, completed})
         .then(({ data }) => {
             console.log(data);
-            return getAllToDo();
+            return getAllToDoForADay(day);
         })
         .catch((err) => {
             console.log(err);
@@ -56,4 +56,4 @@ const completeToDo = (_id, completed) => {
         });
 };
 
-export { getAllToDo, addToDo, updateToDo, deleteToDo, completeToDo};
+export { getAllToDoForADay, addToDo, updateToDo, deleteToDo, completeToDo};
